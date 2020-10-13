@@ -8,14 +8,14 @@ class AdminSiteTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            email = 'admin@gmail.com',
-            password = 'password123'
+            email='admin@gmail.com',
+            password='password123'
         )
         self.client.force_login(self.admin_user)
         self.user = get_user_model().objects.create_user(
-            email = 'test@gmail.com',
-            password = 'password123',
-            name = 'Test user full name'
+            email='test@gmail.com',
+            password='password123',
+            name='Test user full name'
         )
 
     def test_users_listed(self):
@@ -28,7 +28,7 @@ class AdminSiteTests(TestCase):
 
     def test_user_change_page(self):
         """Test that user edit page works"""
-        url = reverse('admin:core_user_change', arg=[self.user.id])
+        url = reverse('admin:core_user_change', args=[self.user.id])
         # somethin like: /admin/core/user/id<1>
         res = self.client.get(url)
 
